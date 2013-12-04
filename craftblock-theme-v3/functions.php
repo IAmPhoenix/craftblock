@@ -6,11 +6,9 @@
         'nanoblock' =>  'craftblock.me:25585',
         'chocoblock' => 'craftblock.me:25564'
     ];
-    
-    // Help Functions
+
     function getAPI($type, $server){
         $url = 'http://api.iamphoenix.me/'.$type.'/?server_ip='.$server;
-        // Fetch contents of URL
         $file = file_get_contents($url);
         $file = json_decode($file);
         if (property_exists($file, 'error')) {
@@ -23,8 +21,6 @@
         Fetch Server Information for each server.
         APIs:
         http://api.iamphoenix.me/
-        TODO: If server is offline return false for other functions
-              create statusCheck
      */
 
     function getStatus($server) {
@@ -39,9 +35,7 @@
             }
         }
     }
-    // Almost same function as above but we're using this for internal code
-    // We could do something that wouldn't need this
-    // But I'm lazy.
+
     function statusCheck($server) {
         $status = getAPI('status', $server);
         if ($status != false) {

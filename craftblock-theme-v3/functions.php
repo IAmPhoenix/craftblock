@@ -1,14 +1,10 @@
 <?php
 
-    // Define servers
-    $server = [
-        'craftblock' => 'craftblock.me',
-        'nanoblock' =>  'craftblock.me:25585',
-        'chocoblock' => 'craftblock.me:25564'
-    ];
+class MinecraftAPI 
+{
 
-    function getAPI($type, $server){
-        $url = 'http://api.iamphoenix.me/'.$type.'/?server_ip='.$server;
+    private function getAPI($type, $server){
+        $url = 'http://api.iamphoenix.me/' . $type . '/?server_ip=' . $server;
         $file = file_get_contents($url);
         $file = json_decode($file);
         if (property_exists($file, 'error')) {
@@ -23,8 +19,18 @@
         http://api.iamphoenix.me/
      */
 
-    function getStatus($server) {
-        $status = getAPI('status', $server);
+    private function statusCheck($server) {
+        $status = $this->getAPI('status', $server);
+        if ($status != false) {
+            if ($status->status == 'true') {
+                return true;
+            }
+            return false;
+        }
+    }
+
+    public function getStatus($server) {
+        $status = $this->getAPI('status', $server);
         if ($status != false) {
             if ($status->status == 'true') {
                 return '<strong class="status-online"> Online :]</strong>';
@@ -36,22 +42,9 @@
         }
     }
 
-    function statusCheck($server) {
-        $status = getAPI('status', $server);
-        if ($status != false) {
-            if ($status->status == 'true') {
-                return true;
-            } elseif ($status->status == 'false') {
-                return false;
-            } else {
-                return false;
-            }
-        }
-    }
-
-    function getVersion($server) {
-        if (statusCheck($server) != false) {
-            $version = getAPI('version', $server);
+    public function getVersion($server) {
+        if ($this->statusCheck($server) != false) {
+            $version = $this->getAPI('version', $server);
             if ($version != false) {
                 return '<span><strong>' . $version->version . '</strong></span>';
             } else {
@@ -60,9 +53,9 @@
         }
     }
    
-    function getPlayerCount($server) {
-        if (statusCheck($server) != false) {
-            $playerCount = getAPI('players', $server);
+    public function getPlayerCount($server) {
+        if ($this->statusCheck($server) != false) {
+            $playerCount = $this->getAPI('players', $server);
             if ($playerCount != false) {
                 $playersOnline = $playerCount->players;
                 $playersMax = $playerCount->players_max;
@@ -76,18 +69,15 @@
         }
     }
 
-    function getPlayers($server) {
-        if (statusCheck($server) != false) {
-            $playersList = getAPI('list', $server);
+    public function getPlayers($server) {
+        if ($this->statusCheck($server) != false) {
+            $playersList = $this->getAPI('list', $server);
             if ($playersList != false && $playersList != "") {
                 $players = explode(',', $playersList->players);
                 if (is_array($players) && !empty($players)) {
                     foreach ($players as $player) {
-                       echo '<img 
-                       data-tooltip 
-                       class="has-tip" 
-                       title="'.$player.'" 
-                       src="https://minotar.net/avatar/'.$player.'/32">';
+                    	if($player !== '')
+                    		echo '<img data-tooltip class="has-tip" title="'.$player.'" src="https://minotar.net/avatar/'.$player.'/32">';
                     }
                 } else {
                     return false;
@@ -97,8 +87,21 @@
             }
         }
     }
+}
 
+// Initiate the class
+$api = new MinecraftAPI();
 
-    
+// Define servers
+$server = [
+	'craftblock' => 'craftblock.me',
+    'nanoblock' =>  'craftblock.me:25585',
+    'chocoblock' => 'craftblock.me:25564'
+];
 
-    
+// Loop through the array and ping each server.
+foreach ($server as $sev) {
+	echo '<p>' . $sev . '</p>' . $api->getStatus( $sev ) . '<br><br>';
+}
+
+?>

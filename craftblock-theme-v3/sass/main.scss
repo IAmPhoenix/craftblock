@@ -1,0 +1,231 @@
+// _base 
+$baseColor: rgba(#4d7088, .95);
+$baseColorDark: #39576a;
+
+@mixin clearfix {
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+
+@font-face {
+    font-family: 'munro';
+    src: url('../fonts/munro/munro-webfont.eot');
+    src: url('../fonts/munro/munro-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/munro/munro-webfont.woff') format('woff'),
+         url('../fonts/munro/munro-webfont.ttf') format('truetype'),
+         url('../fonts/munro/munro-webfont.svg#munroregular') format('svg');
+  
+    font-weight: normal;
+    font-style: normal;
+    text-transform: uppercase;
+
+}
+
+html, body{
+  height: 100%;
+}
+body {
+  min-height: 100%;
+}
+
+body {
+    
+    background: url('../img/bg-main.jpg') no-repeat;
+      -webkit-background-size: cover;
+      -moz-background-size: cover;
+      -o-background-size: cover;
+      background-size: cover;
+      color: #fff;
+}
+
+header {
+    max-width: 30%;
+    float: left;
+}
+
+
+#main-content {
+    float: right;
+    max-width: 50%;
+    background: $baseColor;
+    min-height: 100%;
+    height: 100%;
+}
+
+/*****************
+* Typography
+*****************/
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'munro', serif;
+  text-transform: uppercase;
+}
+
+nav ul li a {
+  @extend h1;
+}
+
+a {
+  color: #94FFFF;
+}
+
+a:hover, a:focus {
+  color: #8DD1E6;
+}
+
+/*****************
+* Navigation
+*****************/
+
+.logo {
+  margin: 10px;
+}
+
+nav {
+    // affects all elements
+    ul {
+        margin: 0;
+        padding: 0;
+        li {
+            list-style-type: none;
+            margin: 10px 0;
+             a {
+                background: $baseColor;
+                font-size: 35px;
+                padding: 10px;
+                display: block;
+                color: #fff;
+
+                &:hover {
+                    color: #fff;
+                    background: $baseColorDark;
+                }
+                span {
+                    font-size: 20px;
+                    text-align: left;
+                }
+            }
+        }
+    }
+
+    // affects only after
+
+    & > ul > li {
+      position: relative;
+      & > a {
+        
+      }
+    }
+}
+
+
+
+.subnav {
+  display: none;
+  box-shadow: 0 0 25px rgba(#000, .5);
+  li {
+    margin: 0;
+    border-top: $baseColorDark 1px solid;
+      &:last-child {
+        border-bottom: $baseColorDark 1px solid;
+      }
+
+      a {
+        font-size: 25px;
+      }
+    }
+}
+
+nav ul li:hover ul {
+
+}
+
+/***********************
+* Homepage
+***********************/
+
+section {
+  margin: 25px;
+}
+
+.cb-description {
+  font-size: 20px;
+  line-height: 1.4;
+  font-weight: bold;
+}
+
+.servers {
+  margin: 0;
+  ul {
+    margin: 0;
+    padding: 0;
+    li {
+      background: $baseColorDark;
+      list-style-type: none;
+      margin-top: 10px;
+
+      @include clearfix;
+      h3 {
+        span {
+          font-size: 20px;
+        }
+      }
+      .server-container {
+        padding: 10px 25px;
+        @include clearfix;
+      }
+      .server-description {
+        float: right;
+        width: 85%;
+      }
+
+      .server-icon {
+        float: left;
+        display: block;
+      }
+      .server-info {
+        background: #273d4b;
+        padding: 5px 25px;
+        box-shadow: inset 0 2px 2px rgba(0, 0, 0, 0.40);
+        span {
+          &:after {
+            content: "/";
+            margin-left: 5px;
+            padding-right: 5px;
+          }
+          &:last-child:after {
+            content: "";
+          }
+        }
+      }
+    }
+  }
+}
+
+.players-online {
+  margin: 10px 0;
+  img {
+    margin-right: 5px;
+  }
+}
+
+.status-online, .status-offline {
+  text-shadow: 0 2px 0 #000;
+}
+
+.status-online {
+  color: #00ff0f;
+
+}
+
+.status-offline {
+  color: #f03;
+  
+}
+
+.empty-server {
+  color: rgba(255, 255, 255, 0.47);
+}

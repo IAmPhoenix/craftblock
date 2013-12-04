@@ -1,0 +1,189 @@
+@font-face {
+  font-family: 'munro';
+  src: url("../fonts/munro/munro-webfont.eot");
+  src: url("../fonts/munro/munro-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/munro/munro-webfont.woff") format("woff"), url("../fonts/munro/munro-webfont.ttf") format("truetype"), url("../fonts/munro/munro-webfont.svg#munroregular") format("svg");
+  font-weight: normal;
+  font-style: normal;
+  text-transform: uppercase;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  min-height: 100%;
+}
+
+body {
+  background: url("../img/bg-main.jpg") no-repeat;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  color: #fff;
+}
+
+header {
+  max-width: 30%;
+  float: left;
+}
+
+#main-content {
+  float: right;
+  max-width: 50%;
+  background: rgba(77, 112, 136, 0.95);
+  min-height: 100%;
+  height: 100%;
+}
+
+/*****************
+* Typography
+*****************/
+h1, nav ul li a, h2, h3, h4, h5, h6 {
+  font-family: 'munro', serif;
+  text-transform: uppercase;
+}
+
+a {
+  color: #94FFFF;
+}
+
+a:hover, a:focus {
+  color: #8DD1E6;
+}
+
+/*****************
+* Navigation
+*****************/
+.logo {
+  margin: 10px;
+}
+
+nav ul {
+  margin: 0;
+  padding: 0;
+}
+nav ul li {
+  list-style-type: none;
+  margin: 10px 0;
+}
+nav ul li a {
+  background: rgba(77, 112, 136, 0.95);
+  font-size: 35px;
+  padding: 10px;
+  display: block;
+  color: #fff;
+}
+nav ul li a:hover {
+  color: #fff;
+  background: #39576a;
+}
+nav ul li a span {
+  font-size: 20px;
+  text-align: left;
+}
+nav > ul > li {
+  position: relative;
+}
+
+.subnav {
+  display: none;
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.5);
+}
+.subnav li {
+  margin: 0;
+  border-top: #39576a 1px solid;
+}
+.subnav li:last-child {
+  border-bottom: #39576a 1px solid;
+}
+.subnav li a {
+  font-size: 25px;
+}
+
+/***********************
+* Homepage
+***********************/
+section {
+  margin: 25px;
+}
+
+.cb-description {
+  font-size: 20px;
+  line-height: 1.4;
+  font-weight: bold;
+}
+
+.servers {
+  margin: 0;
+}
+.servers ul {
+  margin: 0;
+  padding: 0;
+}
+.servers ul li {
+  background: #39576a;
+  list-style-type: none;
+  margin-top: 10px;
+}
+.servers ul li:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.servers ul li h3 span {
+  font-size: 20px;
+}
+.servers ul li .server-container {
+  padding: 10px 25px;
+}
+.servers ul li .server-container:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.servers ul li .server-description {
+  float: right;
+  width: 85%;
+}
+.servers ul li .server-icon {
+  float: left;
+  display: block;
+}
+.servers ul li .server-info {
+  background: #273d4b;
+  padding: 5px 25px;
+  box-shadow: inset 0 2px 2px rgba(0, 0, 0, 0.4);
+}
+.servers ul li .server-info span:after {
+  content: "/";
+  margin-left: 5px;
+  padding-right: 5px;
+}
+.servers ul li .server-info span:last-child:after {
+  content: "";
+}
+
+.players-online {
+  margin: 10px 0;
+}
+.players-online img {
+  margin-right: 5px;
+}
+
+.status-online, .status-offline {
+  text-shadow: 0 2px 0 #000;
+}
+
+.status-online {
+  color: #00ff0f;
+}
+
+.status-offline {
+  color: #f03;
+}
+
+.empty-server {
+  color: rgba(255, 255, 255, 0.47);
+}
